@@ -21,8 +21,8 @@ const common = {
     extensions: ['', '.js']
   },
 
-  outputs: {
-    path: PATHS.build,
+  output: {
+    path: `${PATHS.build}/js/`,
     filename: 'bundle.js'
   },
 
