@@ -1,7 +1,7 @@
-import React  from 'react';
+import React           from 'react';
 
-import Header from './components/Header';
-import Footer from './components/Footer';
+import HeaderComponent from './components/Header';
+import FooterComponent from './components/Footer';
 
 const propTypes = {
   children: React.PropTypes.element.isRequired
@@ -16,9 +16,9 @@ class App extends React.Component {
   render() {
     return (
       <div className="app">
-        <Header />
+        <HeaderComponent />
         {this.props.children}
-        <Footer />
+        <FooterComponent />
       </div>
     );
   }

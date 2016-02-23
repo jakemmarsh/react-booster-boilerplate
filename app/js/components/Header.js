@@ -2,7 +2,7 @@ import React from 'react';
 
 import '../../stylesheets/components/header.scss';
 
-class Header extends React.Component {
+class HeaderComponent extends React.Component {
 
   constructor(props) {
     super(props)
@@ -18,4 +18,4 @@ class Header extends React.Component {
 
 }
 
-export default Header;
+export default HeaderComponent;

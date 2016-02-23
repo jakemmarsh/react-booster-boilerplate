@@ -2,7 +2,7 @@ import React from 'react';
 
 import '../../stylesheets/components/footer.scss';
 
-class Footer extends React.Component {
+class FooterComponent extends React.Component {
 
   constructor(props) {
     super(props)
@@ -18,4 +18,4 @@ class Footer extends React.Component {
 
 }
 
-export default Footer;
+export default FooterComponent;
