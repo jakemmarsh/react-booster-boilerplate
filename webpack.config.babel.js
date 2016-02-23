@@ -69,12 +69,22 @@ const start = {
 
 };
 
+const build = {
+
+  plugins: [
+    new webpack.optimize.UglifyJsPlugin({
+      compress: { drop_console: true } // eslint-disable-line camelcase
+    })
+  ]
+
+};
+
 let envConfig;
 
 if ( TARGET === 'start'  || !TARGET ) {
   envConfig = start;
 } else if ( TARGET === 'build' ) {
-  envConfig = {};
+  envConfig = build;
 }
 
 export default merge(common, envConfig);
