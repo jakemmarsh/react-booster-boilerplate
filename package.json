@@ -4,7 +4,7 @@
   "description": "A ReactJS boilerplate utilizing React Router, Redux, and ImmutableJS. Includes a build system using Webpack and React Hot Loader.",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_ENV=development PORT=3000 HOST=localhost ./node_modules/.bin/gulp development",
+    "dev": "NODE_ENV=development PORT=3000 HOST=localhost ./node_modules/.bin/gulp development",
     "build": "NODE_ENV=build ./node_modules/.bin/gulp production",
     "test": "NODE_ENV=test node ./node_modules/karma/bin/karma start --single-run --browsers PhantomJS"
   },
@@ -41,6 +41,7 @@
     "css-loader": "^0.23.1",
     "del": "^2.2.0",
     "eslint-plugin-react": "^4.1.0",
+    "extract-text-webpack-plugin": "^1.0.1",
     "gulp": "^3.9.1",
     "gulp-changed": "^1.3.0",
     "gulp-eslint": "^2.0.0",

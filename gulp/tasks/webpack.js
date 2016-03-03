@@ -19,8 +19,9 @@ gulp.task('webpack:development', () => {
     historyApiFallback: true,
     hot: true,
     inline: true,
-    progress: true,
-    stats: 'errors-only'
+    stats: {
+      colors: true
+    }
   }).listen(port, host, (err) => {
     if ( err ) {
       throw new gutil.PluginError('webpack-dev-server', err);

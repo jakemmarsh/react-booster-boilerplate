@@ -1,7 +1,8 @@
-import path             from 'path';
-import webpack          from 'webpack';
-import merge            from 'webpack-merge';
-import NpmInstallPlugin from 'npm-install-webpack-plugin';
+import path              from 'path';
+import webpack           from 'webpack';
+import merge             from 'webpack-merge';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import NpmInstallPlugin  from 'npm-install-webpack-plugin';
 
 const TARGET = process.env.NODE_ENV;
 const PATHS = {
@@ -22,8 +23,8 @@ const common = {
   },
 
   output: {
-    path: `${PATHS.build}/js/`,
-    filename: 'bundle.js'
+    path: PATHS.build,
+    filename: '/js/bundle.js'
   },
 
   module: {
@@ -31,7 +32,7 @@ const common = {
       {
         include: PATHS.app,
         test: /\.s?css$/,
-        loaders: ['style', 'css', 'sass']
+        loader: ExtractTextPlugin.extract('style', 'css!sass')
       },
       {
         include: PATHS.app,
@@ -40,7 +41,11 @@ const common = {
         loaders: ['babel?cacheDirectory']
       }
     ]
-  }
+  },
+
+  plugins: [
+    new ExtractTextPlugin('[name].css')
+  ]
 
 };
 
