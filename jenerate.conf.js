@@ -3,7 +3,8 @@ var path = require('path');
 var PATHS = {
   templates: path.join(__dirname, 'jen_templates'),
   app: path.join(__dirname, 'app'),
-  test: path.join(__dirname, 'test')
+  test: path.join(__dirname, 'test'),
+  gulp: path.join(__dirname, 'gulp')
 };
 
 module.exports = {
@@ -36,6 +37,14 @@ module.exports = {
       template: PATHS.templates + '/test/pages/index.js',
       fileNameScheme: '<% name %>_test.js',
       outputDir: PATHS.test + '/pages/'
+    }
+  ],
+
+  task: [
+    {
+      template: PATHS.templates + '/js/tasks/index.js',
+      fileNameScheme: '<% name %>.js',
+      outputDir: PATHS.gulp + '/tasks/'
     }
   ]
 

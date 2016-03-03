@@ -3,7 +3,7 @@ import webpack          from 'webpack';
 import merge            from 'webpack-merge';
 import NpmInstallPlugin from 'npm-install-webpack-plugin';
 
-const TARGET = process.env.npm_lifecycle_event;
+const TARGET = process.env.NODE_ENV;
 const PATHS = {
   app: path.join(__dirname, 'app'),
   build: path.join(__dirname, 'build')
@@ -44,20 +44,9 @@ const common = {
 
 };
 
-const start = {
+const development = {
 
   devtool: 'eval-source-map',
-
-  devServer: {
-    contentBase: PATHS.build,
-    historyApiFallback: true,
-    hot: true,
-    inline: true,
-    progress: true,
-    stats: 'errors-only',
-    host: process.env.HOST,
-    port: process.env.PORT
-  },
 
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
@@ -74,6 +63,11 @@ const build = {
   plugins: [
     new webpack.optimize.UglifyJsPlugin({
       compress: { drop_console: true } // eslint-disable-line camelcase
+    }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production')
+      }
     })
   ]
 
@@ -81,8 +75,8 @@ const build = {
 
 let envConfig;
 
-if ( TARGET === 'start'  || !TARGET ) {
-  envConfig = start;
+if ( TARGET === 'development'  || !TARGET ) {
+  envConfig = development;
 } else if ( TARGET === 'build' ) {
   envConfig = build;
 }
