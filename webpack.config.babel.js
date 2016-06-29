@@ -123,7 +123,7 @@ const dist = {
 
 let envConfig;
 
-if ( TARGET === 'development'  || !TARGET ) {
+if ( TARGET === 'development' || TARGET === 'test'  || !TARGET ) {
   envConfig = development;
 } else if ( TARGET === 'production' ) {
   envConfig = dist;

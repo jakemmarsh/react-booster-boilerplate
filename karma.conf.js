@@ -1,3 +1,9 @@
+const path = require('path');
+
+const PATHS = {
+  src: path.join(__dirname, 'src')
+};
+
 module.exports = function(config) {
   config.set({
 
@@ -13,22 +19,26 @@ module.exports = function(config) {
 
     reporters: ['spec'],
 
-    // TODO: figure out source maps
     webpack: {
+      devtool: 'inline-source-map',
       module: {
         loaders: [
           {
             test: /\.s?css$/,
-            loaders: ['style', 'css', 'sass']
+            loaders: ['style-loader', 'css-loader', 'sass-loader']
           },
           {
             test: /\.js$/,
             loaders: ['babel?cacheDirectory']
           }
         ],
-        resolve: {
-          extensions: ['', '.js']
-        },
+      },
+      sassLoader: {
+        includePaths: [path.join(PATHS.src, 'sass')]
+      },
+      resolve: {
+        moduleDirectories: [PATHS.src, 'node_modules'],
+        extensions: ['', '.js']
       }
     },
 
