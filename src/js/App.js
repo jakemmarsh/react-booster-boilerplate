@@ -1,7 +1,7 @@
 import React           from 'react';
 
-import HeaderComponent from './components/Header';
-import FooterComponent from './components/Footer';
+import HeaderComponent from './components/header';
+import FooterComponent from './components/footer';
 
 const propTypes = {
   children: React.PropTypes.element.isRequired

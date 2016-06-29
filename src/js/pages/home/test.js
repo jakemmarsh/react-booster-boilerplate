@@ -3,7 +3,7 @@ import ReactDOM        from 'react-dom';
 import TestUtils       from 'react-addons-test-utils';
 import {assert}        from 'chai';
 
-import HomePage        from '../../app/js/pages/Home';
+import HomePage        from './index';
 
 describe('Page: Home', function() {
 

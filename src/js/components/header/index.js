@@ -1,11 +1,11 @@
 import React from 'react';
 
-import '../../stylesheets/components/header.scss';
+import './styles.scss';
 
 class HeaderComponent extends React.Component {
 
   constructor(props) {
-    super(props)
+    super(props);
   }
 
   render() {

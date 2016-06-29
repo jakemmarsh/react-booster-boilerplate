@@ -1,17 +1,17 @@
 import React from 'react';
 
-import '../../stylesheets/components/footer.scss';
+import './styles.scss';
 
 class FooterComponent extends React.Component {
 
   constructor(props) {
-    super(props)
+    super(props);
   }
 
   render() {
     return (
       <footer className="footer-component">
-        Footer
+        Footer test
       </footer>
     );
   }

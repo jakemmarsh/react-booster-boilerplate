@@ -3,70 +3,114 @@ import webpack           from 'webpack';
 import merge             from 'webpack-merge';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import NpmInstallPlugin  from 'npm-install-webpack-plugin';
+import CleanPlugin       from 'clean-webpack-plugin';
+import CopyPlugin        from 'copy-webpack-plugin';
 
+const HOST = process.env.HOST;
+const PORT = process.env.PORT;
 const TARGET = process.env.NODE_ENV;
 const PATHS = {
-  app: path.join(__dirname, 'app'),
-  build: path.join(__dirname, 'build')
+  root: path.join(__dirname, '.'),
+  src: path.join(__dirname, 'src'),
+  dist: path.join(__dirname, 'dist')
 };
 
 process.env.BABEL_ENV = TARGET;
 
 const common = {
-
   entry: {
-    app: [`${PATHS.app}/js/main.js`]
+    ['js/bundle.js']: [
+      `webpack-hot-middleware/client?path=http://${HOST}:${PORT}/__webpack_hmr`,
+      `${PATHS.src}/js/main.js`
+    ],
   },
 
   resolve: {
-    extensions: ['', '.js']
+    moduleDirectories: [PATHS.src, 'node_modules'],
+    extensions: ['', '.js', 'json']
   },
 
   output: {
-    path: PATHS.build,
-    filename: '/js/bundle.js'
+    path: PATHS.dist,
+    filename: '[name]'
   },
 
   module: {
     loaders: [
       {
-        include: PATHS.app,
-        test: /\.s?css$/,
-        loader: ExtractTextPlugin.extract('style', 'css!sass')
-      },
-      {
-        include: PATHS.app,
         test: /\.js$/,
+        include: PATHS.src,
         exclude: /node_modules/,
-        loaders: ['babel?cacheDirectory']
+        loaders: ['react-hot-loader', 'babel-loader?cacheDirectory']
+      }
+    ]
+  },
+
+  sassLoader: {
+    includePaths: [path.join(PATHS.src, 'sass')]
+  },
+
+  plugins: [
+    new CleanPlugin([PATHS.dist], {
+      root: PATHS.root
+    })
+  ]
+};
+
+const development = {
+  devtool: 'inline-source-map',
+
+  output: {
+    publicPath: `http://${HOST}:${PORT}/`
+  },
+
+  module: {
+    loaders: [
+      {
+        test: /\.s?css$/,
+        include: PATHS.src,
+        loaders: ['style-loader', 'css-loader', 'sass-loader']
       }
     ]
   },
 
   plugins: [
-    new ExtractTextPlugin('[name].css')
-  ]
-
-};
-
-const development = {
-
-  devtool: 'eval-source-map',
-
-  plugins: [
+    new CopyPlugin([
+      { from: path.join(PATHS.src, 'dev_index.html'), to: path.join(PATHS.dist, 'index.html') }
+    ]),
     new webpack.HotModuleReplacementPlugin(),
     new NpmInstallPlugin({
       save: false,
       saveDev: true
     })
   ]
-
 };
 
-const build = {
+const dist = {
+  output: {
+    publicPath: '/'
+  },
+
+  module: {
+    loaders: [
+      {
+        test: /\.s?css$/,
+        include: PATHS.src,
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!sass-loader')
+      }
+    ]
+  },
 
   plugins: [
+    new CopyPlugin([
+      { from: path.join(PATHS.src, 'prod_index.html'), to: path.join(PATHS.dist, 'index.html') }
+    ]),
+    new ExtractTextPlugin('./css/bundle.css'),
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({
+      mangle: false,
+      sourcemap: false,
       compress: { drop_console: true } // eslint-disable-line camelcase
     }),
     new webpack.DefinePlugin({
@@ -75,15 +119,14 @@ const build = {
       }
     })
   ]
-
 };
 
 let envConfig;
 
 if ( TARGET === 'development'  || !TARGET ) {
   envConfig = development;
-} else if ( TARGET === 'build' ) {
-  envConfig = build;
+} else if ( TARGET === 'production' ) {
+  envConfig = dist;
 }
 
 export default merge(common, envConfig);

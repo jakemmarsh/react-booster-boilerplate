@@ -3,24 +3,24 @@ import ReactDOM        from 'react-dom';
 import TestUtils       from 'react-addons-test-utils';
 import {assert}        from 'chai';
 
-import HeaderComponent from '../../app/js/components/Header';
+import FooterComponent from './index';
 
-describe('Component: Header', function() {
+describe('Component: Footer', function() {
 
   let rendered;
 
   beforeEach(function() {
-    rendered = TestUtils.renderIntoDocument(<HeaderComponent />);
+    rendered = TestUtils.renderIntoDocument(<FooterComponent />);
   });
 
   it('should render with the correct class', function() {
-    TestUtils.findRenderedDOMComponentWithClass(rendered, 'header-component');
+    TestUtils.findRenderedDOMComponentWithClass(rendered, 'footer-component');
   });
 
   it('should render with the correct text content', function() {
     const node = ReactDOM.findDOMNode(rendered);
 
-    assert(node.textContent === 'Header');
+    assert(node.textContent === 'Footer');
   });
 
 });

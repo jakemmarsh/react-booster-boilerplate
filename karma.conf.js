@@ -2,13 +2,13 @@ module.exports = function(config) {
   config.set({
 
     files: [
-      'test/main.js'
+      'src/js/**/test.js'
     ],
 
     frameworks: ['mocha'],
 
     preprocessors: {
-      'test/main.js': ['webpack']
+      'src/js/**/test.js': ['webpack']
     },
 
     reporters: ['spec'],
