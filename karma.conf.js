@@ -1,21 +1,23 @@
 const path = require('path');
+const args = require('yargs').argv;
 
 const PATHS = {
   src: path.join(__dirname, 'src')
 };
 
+const FILES = args.file || 'src/js/**/*test.js';
+const PREPROCESSORS = {};
+
+PREPROCESSORS[FILES] = ['webpack'];
+
 module.exports = function(config) {
   config.set({
 
-    files: [
-      'src/js/**/test.js'
-    ],
+    files: [FILES],
 
     frameworks: ['mocha'],
 
-    preprocessors: {
-      'src/js/**/test.js': ['webpack']
-    },
+    preprocessors: PREPROCESSORS,
 
     reporters: ['spec'],
 
