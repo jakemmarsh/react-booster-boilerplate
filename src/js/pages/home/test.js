@@ -5,19 +5,19 @@ import {assert}        from 'chai';
 
 import HomePage        from './index';
 
-describe('Page: Home', function() {
+describe('Page: Home', () => {
 
   let rendered;
 
-  beforeEach(function() {
+  beforeEach(() => {
     rendered = TestUtils.renderIntoDocument(<HomePage />);
   });
 
-  it('should render with the correct class', function() {
+  it('should render with the correct class', () => {
     TestUtils.findRenderedDOMComponentWithClass(rendered, 'home-page');
   });
 
-  it('should render with the correct text content', function() {
+  it('should render with the correct text content', () => {
     const node = ReactDOM.findDOMNode(rendered);
 
     assert(node.textContent === 'Home page');
