@@ -5,19 +5,19 @@ import {assert}        from 'chai';
 
 import HeaderComponent from './index';
 
-describe('Component: Header', function() {
+describe('Component: Header', () => {
 
   let rendered;
 
-  beforeEach(function() {
+  beforeEach(() => {
     rendered = TestUtils.renderIntoDocument(<HeaderComponent />);
   });
 
-  it('should render with the correct class', function() {
+  it('should render with the correct class', () => {
     TestUtils.findRenderedDOMComponentWithClass(rendered, 'header-component');
   });
 
-  it('should render with the correct text content', function() {
+  it('should render with the correct text content', () => {
     const node = ReactDOM.findDOMNode(rendered);
 
     assert(node.textContent === 'Header');

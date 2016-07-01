@@ -5,19 +5,19 @@ import {assert}        from 'chai';
 
 import FooterComponent from './index';
 
-describe('Component: Footer', function() {
+describe('Component: Footer', () => {
 
   let rendered;
 
-  beforeEach(function() {
+  beforeEach(() => {
     rendered = TestUtils.renderIntoDocument(<FooterComponent />);
   });
 
-  it('should render with the correct class', function() {
+  it('should render with the correct class', () => {
     TestUtils.findRenderedDOMComponentWithClass(rendered, 'footer-component');
   });
 
-  it('should render with the correct text content', function() {
+  it('should render with the correct text content', () => {
     const node = ReactDOM.findDOMNode(rendered);
 
     assert(node.textContent === 'Footer');

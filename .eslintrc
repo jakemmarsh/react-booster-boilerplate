@@ -12,20 +12,27 @@
     "node": true
   },
   "rules": {
+    "arrow-body-style": [2, "always"],
+    "arrow-parens": 2,
     "quotes": [2, "single"],
     "eol-last": 2,
+    "no-confusing-arrow": 2,
     "no-debugger": 1,
-    "no-mixed-requires": 0,
-    "no-underscore-dangle": 0,
+    "no-mixed-requires": 2,
+    "no-underscore-dangle": 2,
     "no-multi-spaces": 0,
     "no-trailing-spaces": 1,
-    "no-extra-boolean-cast": 0,
+    "no-extra-boolean-cast": 2,
     "no-unused-vars": 2,
     "no-undefined": 2,
     "new-cap": 0,
+    "prefer-arrow-callback": 2,
     "camelcase": 2,
     "react/jsx-uses-react": 2,
     "react/jsx-uses-vars": 2,
-    "react/react-in-jsx-scope": 0
+    "react/react-in-jsx-scope": 2
+  },
+  "globals": {
+    "webpackIsomorphicTools": false
   }
 }

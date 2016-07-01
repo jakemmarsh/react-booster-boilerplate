@@ -5,7 +5,9 @@
   "scripts": {
     "start": "NODE_ENV=production PORT=3000 babel-node index.js",
     "dev": "NODE_ENV=development PORT=3000 HOST=localhost babel-node index.js",
+    "lint": "eslint .",
     "build": "NODE_ENV=production webpack",
+    "pretest": "npm run lint",
     "test": "NODE_ENV=test node ./node_modules/karma/bin/karma start --single-run --browsers PhantomJS"
   },
   "repository": {
@@ -50,6 +52,7 @@
     "clean-webpack-plugin": "^0.1.9",
     "copy-webpack-plugin": "^3.0.1",
     "css-loader": "^0.23.1",
+    "eslint": "^2.13.1",
     "eslint-plugin-react": "^5.2.2",
     "extract-text-webpack-plugin": "^1.0.1",
     "immutable": "^3.7.6",
