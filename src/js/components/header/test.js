@@ -20,7 +20,7 @@ describe('Component: Header', () => {
   it('should render with the correct text content', () => {
     const node = ReactDOM.findDOMNode(rendered);
 
-    assert(node.textContent === 'Header');
+    assert.strictEqual(node.textContent, 'Header');
   });
 
 });

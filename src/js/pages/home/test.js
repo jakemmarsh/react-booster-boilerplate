@@ -10,7 +10,9 @@ describe('Page: Home', () => {
   let rendered;
 
   beforeEach(() => {
-    rendered = TestUtils.renderIntoDocument(<HomePage />);
+    rendered = TestUtils.renderIntoDocument(
+      <HomePage />
+    );
   });
 
   it('should render with the correct class', () => {
@@ -20,7 +22,7 @@ describe('Page: Home', () => {
   it('should render with the correct text content', () => {
     const node = ReactDOM.findDOMNode(rendered);
 
-    assert(node.textContent === 'Home page');
+    assert.strictEqual(node.textContent, 'Home page');
   });
 
 });

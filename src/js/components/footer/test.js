@@ -10,7 +10,9 @@ describe('Component: Footer', () => {
   let rendered;
 
   beforeEach(() => {
-    rendered = TestUtils.renderIntoDocument(<FooterComponent />);
+    rendered = TestUtils.renderIntoDocument(
+      <FooterComponent />
+    );
   });
 
   it('should render with the correct class', () => {
@@ -20,7 +22,7 @@ describe('Component: Footer', () => {
   it('should render with the correct text content', () => {
     const node = ReactDOM.findDOMNode(rendered);
 
-    assert(node.textContent === 'Footer');
+    assert.strictEqual(node.textContent, 'Footer');
   });
 
 });

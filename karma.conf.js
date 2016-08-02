@@ -5,15 +5,18 @@ const PATHS = {
   src: path.join(__dirname, 'src')
 };
 
-const FILES = args.file || 'src/js/**/*test.js';
-const PREPROCESSORS = {};
-
-PREPROCESSORS[FILES] = ['webpack'];
-
 module.exports = function(config) {
+  const hasSingleFile = !!args.file;
+  const files = hasSingleFile ? args.file : 'src/js/**/*test.js';
+  const PREPROCESSORS = {};
+
+  PREPROCESSORS[files] = ['webpack'];
+
   config.set({
 
-    files: [FILES],
+    singleRun: !hasSingleFile,
+
+    files: [files],
 
     frameworks: ['mocha'],
 
@@ -31,6 +34,7 @@ module.exports = function(config) {
           },
           {
             test: /\.js$/,
+            exclude: /node_modules/,
             loaders: ['babel?cacheDirectory']
           }
         ],
