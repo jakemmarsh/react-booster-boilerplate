@@ -8,9 +8,9 @@ const PATHS = {
 module.exports = function(config) {
   const hasSingleFile = !!args.file;
   const files = hasSingleFile ? args.file : 'src/js/**/*test.js';
-  const PREPROCESSORS = {};
+  const preprocessors = {};
 
-  PREPROCESSORS[files] = ['webpack'];
+  preprocessors[files] = ['webpack'];
 
   config.set({
 
@@ -20,7 +20,7 @@ module.exports = function(config) {
 
     frameworks: ['mocha'],
 
-    preprocessors: PREPROCESSORS,
+    preprocessors: preprocessors,
 
     reporters: ['spec'],
 
