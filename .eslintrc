@@ -9,7 +9,8 @@
   },
   "env": {
     "browser": true,
-    "node": true
+    "node": true,
+    "mocha": true
   },
   "rules": {
     "arrow-body-style": [2, "always"],
@@ -24,7 +25,7 @@
     "no-trailing-spaces": 1,
     "no-extra-boolean-cast": 2,
     "no-unused-vars": 2,
-    "no-undefined": 2,
+    "no-undef": 2,
     "new-cap": 0,
     "prefer-arrow-callback": 2,
     "camelcase": 2,
