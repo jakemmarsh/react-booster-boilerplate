@@ -7,7 +7,7 @@
     "lint": "eslint .",
     "build": "NODE_ENV=production webpack",
     "pretest": "npm run lint",
-    "test": "NODE_ENV=test node ./node_modules/karma/bin/karma start --single-run --browsers PhantomJS"
+    "test": "NODE_ENV=test node ./node_modules/karma/bin/karma start"
   },
   "repository": {
     "type": "git",
