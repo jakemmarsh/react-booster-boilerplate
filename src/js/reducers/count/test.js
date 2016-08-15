@@ -11,42 +11,62 @@ describe('Reducers: Count', () => {
   });
 
   context('with INCREMENT action', () => {
-    it('should increment the count', () => {
-      assert.isTrue(Immutable.is(
-        CountReducer(undefined, {
-          type: CountConstants.INCREMENT,
-          payload: 2
-        }),
-        Immutable.Map({ count: 3 })
-      ));
+    it('should increment the count when not passed state', () => {
+      const state = undefined;
+      const action = {
+        type: CountConstants.INCREMENT,
+        payload: 2
+      };
+      const expected = Immutable.Map({
+        count: 3
+      });
 
-      assert.isTrue(Immutable.is(
-        CountReducer({ count: 2 }, {
-          type: CountConstants.INCREMENT,
-          payload: 2
-        }),
-        Immutable.Map({ count: 4 })
-      ));
+      assert.isTrue(Immutable.is(CountReducer(state, action), expected));
+    });
+
+    it('should increment the count when passed state', () => {
+      const state = {
+        count: 2
+      };
+      const action = {
+        type: CountConstants.INCREMENT,
+        payload: 2
+      };
+      const expected = Immutable.Map({
+        count: 4
+      });
+
+      assert.isTrue(Immutable.is(CountReducer(state, action), expected));
     });
   });
 
   context('with DECREMENT action', () => {
-    it('should decrement the count', () => {
-      assert.isTrue(Immutable.is(
-        CountReducer(undefined, {
-          type: CountConstants.DECREMENT,
-          payload: 1
-        }),
-        Immutable.Map({ count: 0 })
-      ));
+    it('should decrement the count when not passed state', () => {
+      const state = undefined;
+      const action = {
+        type: CountConstants.DECREMENT,
+        payload: 1
+      };
+      const expected = Immutable.Map({
+        count: 0
+      });
 
-      assert.isTrue(Immutable.is(
-        CountReducer({ count: 5 }, {
-          type: CountConstants.DECREMENT,
-          payload: 2
-        }),
-        Immutable.Map({ count: 3 })
-      ));
+      assert.isTrue(Immutable.is(CountReducer(state, action), expected));
+    });
+
+    it('should decrement the count when passed state', () => {
+      const state = {
+        count: 5
+      };
+      const action = {
+        type: CountConstants.DECREMENT,
+        payload: 2
+      };
+      const expected = Immutable.Map({
+        count: 3
+      });
+
+      assert.isTrue(Immutable.is(CountReducer(state, action), expected));
     });
   });
 
