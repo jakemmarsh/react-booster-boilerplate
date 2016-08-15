@@ -1,7 +1,7 @@
-import {assert}                 from 'chai';
+import {assert}       from 'chai';
 
-import { INCREMENT, DECREMENT } from '../../constants/count';
-import CountActions             from './index';
+import CountConstants from '../../constants/count';
+import CountActions   from './index';
 
 describe('Actions: Count', () => {
 
@@ -9,7 +9,7 @@ describe('Actions: Count', () => {
     it('should create an action to increment a count', () => {
       const amount = 3;
       const expectedAction = {
-        type: INCREMENT,
+        type: CountConstants.INCREMENT,
         amount
       };
 
@@ -21,7 +21,7 @@ describe('Actions: Count', () => {
     it('should create an action to decrement a count', () => {
       const amount = 1;
       const expectedAction = {
-        type: DECREMENT,
+        type: CountConstants.DECREMENT,
         amount
       };
 

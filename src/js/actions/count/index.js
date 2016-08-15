@@ -1,17 +1,17 @@
-import { INCREMENT, DECREMENT } from '../../constants/count';
+import CountConstants from '../../constants/count';
 
 const CountActions = {
 
   increment(amount) {
     return {
-      type: INCREMENT,
+      type: CountConstants.INCREMENT,
       amount
     }
   },
 
   decrement(amount) {
     return {
-      type: DECREMENT,
+      type: CountConstants.DECREMENT,
       amount
     }
   }
