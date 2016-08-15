@@ -12,9 +12,13 @@ export default function update(state = initialState, action) {
   let newState = state;
 
   if ( action.type === CountConstants.INCREMENT ) {
-    newState = newState.set('count', state.get('count') + action.payload);
+    newState = newState.update('count', (count) => {
+      return count + action.payload;
+    });
   } else if ( action.type === CountConstants.DECREMENT ) {
-    newState = newState.set('count', state.get('count') - action.payload);
+    newState = newState.update('count', (count) => {
+      return count - action.payload;
+    });
   }
 
   return newState;
