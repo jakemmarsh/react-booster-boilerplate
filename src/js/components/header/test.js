@@ -1,16 +1,25 @@
 import React           from 'react';
 import ReactDOM        from 'react-dom';
 import TestUtils       from 'react-addons-test-utils';
-import {assert}        from 'chai';
+import { assert }      from 'chai';
 
 import HeaderComponent from './index';
 
 describe('Component: Header', () => {
 
   let rendered;
+  let props;
+
+  function renderComponent() {
+    rendered = TestUtils.renderIntoDocument(
+      <HeaderComponent {...props} />
+    );
+  }
 
   beforeEach(() => {
-    rendered = TestUtils.renderIntoDocument(<HeaderComponent />);
+    props = {};
+
+    renderComponent();
   });
 
   it('should render with the correct class', () => {

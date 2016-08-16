@@ -6,7 +6,7 @@ const initialState = Immutable.Map({
   count: 1
 });
 
-export default function update(state = initialState, action) {
+export default function count(state = initialState, action) {
   state = Immutable.fromJS(state);
 
   let newState = state;

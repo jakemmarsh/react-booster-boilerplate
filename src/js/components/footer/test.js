@@ -1,18 +1,25 @@
 import React           from 'react';
 import ReactDOM        from 'react-dom';
 import TestUtils       from 'react-addons-test-utils';
-import {assert}        from 'chai';
+import { assert }      from 'chai';
 
 import FooterComponent from './index';
 
 describe('Component: Footer', () => {
 
   let rendered;
+  let props;
+
+  function renderComponent() {
+    rendered = TestUtils.renderIntoDocument(
+      <FooterComponent {...props} />
+    );
+  }
 
   beforeEach(() => {
-    rendered = TestUtils.renderIntoDocument(
-      <FooterComponent />
-    );
+    props = {};
+
+    renderComponent();
   });
 
   it('should render with the correct class', () => {

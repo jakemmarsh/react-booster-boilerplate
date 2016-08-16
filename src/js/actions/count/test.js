@@ -1,4 +1,4 @@
-import {assert}       from 'chai';
+import { assert }     from 'chai';
 
 import CountConstants from '../../constants/count';
 import CountActions   from './index';
@@ -10,7 +10,7 @@ describe('Actions: Count', () => {
       const amount = 3;
       const expectedAction = {
         type: CountConstants.INCREMENT,
-        amount
+        payload: amount
       };
 
       assert.deepEqual(CountActions.increment(amount), expectedAction);
@@ -22,7 +22,7 @@ describe('Actions: Count', () => {
       const amount = 1;
       const expectedAction = {
         type: CountConstants.DECREMENT,
-        amount
+        payload: amount
       };
 
       assert.deepEqual(CountActions.decrement(amount), expectedAction);

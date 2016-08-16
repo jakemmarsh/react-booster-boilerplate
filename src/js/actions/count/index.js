@@ -5,14 +5,14 @@ const CountActions = {
   increment(amount) {
     return {
       type: CountConstants.INCREMENT,
-      amount
+      payload: amount
     }
   },
 
   decrement(amount) {
     return {
       type: CountConstants.DECREMENT,
-      amount
+      payload: amount
     }
   }
 

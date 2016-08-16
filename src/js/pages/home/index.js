@@ -1,4 +1,6 @@
-import React from 'react';
+import React            from 'react';
+
+import CounterComponent from '../../components/counter';
 
 class HomePage extends React.Component {
 
@@ -9,11 +11,17 @@ class HomePage extends React.Component {
   render() {
     return (
       <div className="home-page">
-        Home page
+        <CounterComponent {...this.props} />
       </div>
     );
   }
 
 }
+
+HomePage.propTypes = {
+  count: React.PropTypes.number,
+  incrementCount: React.PropTypes.func,
+  decrementCount: React.PropTypes.func
+};
 
 export default HomePage;
