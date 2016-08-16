@@ -20,7 +20,7 @@ process.env.BABEL_ENV = TARGET;
 const common = {
   entry: {
     ['js/bundle.js']: [
-      `webpack-hot-middleware/client?path=http://${HOST}:${PORT}/__webpack_hmr`,
+      `webpack-hot-middleware/client?path=http://${HOST}:${PORT}/__webpack_hmr&reload=true`,
       `${PATHS.src}/js/main.js`
     ],
   },
