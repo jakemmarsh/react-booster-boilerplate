@@ -17,7 +17,6 @@
     "sandbox": true
   },
   "rules": {
-    "arrow-body-style": [2, "always"],
     "arrow-parens": 2,
     "quotes": [2, "single"],
     "eol-last": 2,
