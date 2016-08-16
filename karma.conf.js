@@ -7,16 +7,18 @@ const PATHS = {
 
 module.exports = function(config) {
   const hasSingleFile = !!args.file;
+  const helperFile = 'test_helper.js';
   const files = hasSingleFile ? args.file : 'src/js/**/*test.js';
   const preprocessors = {};
 
+  preprocessors[helperFile] = ['webpack'];
   preprocessors[files] = ['webpack'];
 
   config.set({
 
     singleRun: !hasSingleFile,
 
-    files: [files],
+    files: [helperFile, files],
 
     frameworks: ['mocha'],
 
