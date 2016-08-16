@@ -11,12 +11,6 @@ class AppComponent extends React.Component {
     this.renderChildren = this.renderChildren.bind(this);
   }
 
-  renderChildren() {
-    return React.Children.map(this.props.children, (child) => {
-      return React.cloneElement(child, this.props);
-    });
-  }
-
   render() {
     return (
       <div className="app-component">
@@ -25,6 +19,12 @@ class AppComponent extends React.Component {
         <FooterComponent />
       </div>
     );
+  }
+
+  renderChildren() {
+    return React.Children.map(this.props.children, (child) => {
+      return React.cloneElement(child, this.props);
+    });
   }
 
 }
