@@ -69,7 +69,7 @@
     "react-transform-hmr": "^1.0.4",
     "redux": "^3.6.0",
     "sass-loader": "^4.0.2",
-    "sinon": "^1.17.6",
+    "sinon": "^2.0.0-pre.3",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.3",
     "webpack-dev-middleware": "^1.8.4",
