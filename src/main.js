@@ -11,8 +11,12 @@ import routes                     from './routes';
 const store = createStore(reducers);
 const history = syncHistoryWithStore(browserHistory, store);
 
+const target = document.createElement('div');
+target.setAttribute('id', 'app');
+document.body.appendChild(target);
+
 ReactDOM.render((
   <Provider store={store}>
     <Router history={history} routes={routes} />
   </Provider>
-), document.getElementById('app'));
+), target);

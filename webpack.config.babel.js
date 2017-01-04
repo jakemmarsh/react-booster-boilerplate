@@ -3,7 +3,7 @@ import webpack           from 'webpack';
 import merge             from 'webpack-merge';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import CleanPlugin       from 'clean-webpack-plugin';
-import CopyPlugin        from 'copy-webpack-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 const HOST = process.env.HOST;
 const PORT = process.env.PORT;
@@ -52,6 +52,10 @@ const common = {
   plugins: [
     new CleanPlugin([PATHS.dist], {
       root: PATHS.root
+    }),
+    new HtmlWebpackPlugin({
+      title: 'React Booster Boilerplate',
+      filename: path.join(PATHS.dist, 'index.html')
     })
   ]
 };
@@ -74,9 +78,6 @@ const development = {
   },
 
   plugins: [
-    new CopyPlugin([
-      { from: path.join(PATHS.src, 'dev_index.html'), to: path.join(PATHS.dist, 'index.html') }
-    ]),
     new webpack.HotModuleReplacementPlugin()
   ]
 };
@@ -97,9 +98,6 @@ const dist = {
   },
 
   plugins: [
-    new CopyPlugin([
-      { from: path.join(PATHS.src, 'prod_index.html'), to: path.join(PATHS.dist, 'index.html') }
-    ]),
     new ExtractTextPlugin('./css/bundle.css'),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
