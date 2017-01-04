@@ -2,7 +2,6 @@ import path              from 'path';
 import webpack           from 'webpack';
 import merge             from 'webpack-merge';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
-import NpmInstallPlugin  from 'npm-install-webpack-plugin';
 import CleanPlugin       from 'clean-webpack-plugin';
 import CopyPlugin        from 'copy-webpack-plugin';
 
@@ -78,11 +77,7 @@ const development = {
     new CopyPlugin([
       { from: path.join(PATHS.src, 'dev_index.html'), to: path.join(PATHS.dist, 'index.html') }
     ]),
-    new webpack.HotModuleReplacementPlugin(),
-    new NpmInstallPlugin({
-      save: false,
-      saveDev: true
-    })
+    new webpack.HotModuleReplacementPlugin()
   ]
 };
 
