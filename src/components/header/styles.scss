@@ -1,0 +1,8 @@
+@import 'variables';
+
+.header-component {
+  margin-bottom: $base * 3;
+  padding: $base 0;
+  border-bottom: 1px solid $grey;
+  text-align: center;
+}
