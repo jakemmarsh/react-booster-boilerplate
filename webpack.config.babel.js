@@ -41,7 +41,7 @@ const common = {
         test: /\.js$/,
         include: PATHS.src,
         exclude: /node_modules/,
-        loaders: ['react-hot-loader', 'babel-loader?cacheDirectory']
+        loaders: ['babel-loader?cacheDirectory']
       }
     ]
   },
