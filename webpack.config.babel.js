@@ -2,9 +2,8 @@ import path                         from 'path';
 import webpack                      from 'webpack';
 import merge                        from 'webpack-merge';
 import ExtractTextPlugin            from 'extract-text-webpack-plugin';
-import NpmInstallPlugin             from 'npm-install-webpack-plugin';
 import CleanPlugin                  from 'clean-webpack-plugin';
-import CopyPlugin                   from 'copy-webpack-plugin';
+import HtmlWebpackPlugin            from 'html-webpack-plugin';
 import WebpackIsomorphicToolsPlugin from 'webpack-isomorphic-tools/plugin';
 import isomorphicConfig             from './webpack-isomorphic.config';
 
@@ -26,9 +25,9 @@ const common = {
   content: PATHS.src,
 
   entry: {
-    ['bundle']: [
-      `webpack-hot-middleware/client?path=http://${HOST}:${PORT}/__webpack_hmr`,
-      `${PATHS.src}/js/main.js`
+    ['js/bundle.js']: [
+      `webpack-hot-middleware/client?path=http://${HOST}:${PORT}/__webpack_hmr&reload=true`,
+      `${PATHS.src}/main.js`
     ],
   },
 
@@ -48,7 +47,7 @@ const common = {
         test: /\.js$/,
         include: PATHS.src,
         exclude: /node_modules/,
-        loaders: ['react-hot-loader', 'babel-loader?cacheDirectory']
+        loaders: ['babel-loader?cacheDirectory']
       },
       {
         test: webpackIsomorphicToolsPlugin.regular_expression('images'),
@@ -65,6 +64,10 @@ const common = {
     webpackIsomorphicToolsPlugin,
     new CleanPlugin([PATHS.dist], {
       root: PATHS.root
+    }),
+    new HtmlWebpackPlugin({
+      title: 'React Booster Boilerplate',
+      filename: path.join(PATHS.dist, 'index.html')
     })
   ]
 };
@@ -87,14 +90,7 @@ const development = {
   },
 
   plugins: [
-    new CopyPlugin([
-      { from: path.join(PATHS.src, 'dev_index.html'), to: path.join(PATHS.dist, 'index.html') }
-    ]),
-    new webpack.HotModuleReplacementPlugin(),
-    new NpmInstallPlugin({
-      save: false,
-      saveDev: true
-    })
+    new webpack.HotModuleReplacementPlugin()
   ]
 };
 
@@ -114,10 +110,7 @@ const dist = {
   },
 
   plugins: [
-    new CopyPlugin([
-      { from: path.join(PATHS.src, 'prod_index.html'), to: path.join(PATHS.dist, 'index.html') }
-    ]),
-    new ExtractTextPlugin('css/bundle.css'),
+    new ExtractTextPlugin('./css/bundle.css'),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({

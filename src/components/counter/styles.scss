@@ -1,0 +1,25 @@
+@import 'variables';
+
+.counter-component {
+  max-width: 300px;
+  margin: 0 auto;
+  padding: $base / 2;
+  border: 1px solid $grey;
+}
+
+.counter-component-count {
+  margin-bottom: $base / 2;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.counter-component-button-container {
+  display: flex;
+}
+
+.counter-component-button {
+  flex: 1;
+  padding: $base / 4;
+  background-color: $grey;
+  cursor: pointer;
+}
