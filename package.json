@@ -6,7 +6,6 @@
     "dev": "NODE_ENV=development PORT=3000 HOST=localhost babel-node webpack_server.js",
     "lint": "eslint .",
     "build": "NODE_ENV=production webpack",
-    "pretest": "npm run lint",
     "test": "NODE_ENV=test node ./node_modules/karma/bin/karma start"
   },
   "repository": {
@@ -22,7 +21,8 @@
     "immutablejs",
     "boilerplate",
     "javascript",
-    "webpack"
+    "webpack",
+    "yarn"
   ],
   "author": "Jake Marsh <jakemmarsh@gmail.com> (http://jakemmarsh.com)",
   "license": "MIT",
