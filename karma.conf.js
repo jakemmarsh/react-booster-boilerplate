@@ -8,7 +8,7 @@ const PATHS = {
 module.exports = function(config) {
   const hasSingleFile = !!args.file;
   const helperFile = 'test_helper.js';
-  const files = hasSingleFile ? args.file : 'src/js/**/*test.js';
+  const files = hasSingleFile ? args.file : 'src/**/*test.js';
   const preprocessors = {};
 
   preprocessors[helperFile] = ['webpack'];
