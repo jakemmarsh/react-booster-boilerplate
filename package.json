@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "A ReactJS boilerplate utilizing React Router, Redux, and ImmutableJS. Includes a build system using Webpack and React Hot Loader.",
   "scripts": {
-    "dev": "NODE_ENV=development PORT=3000 HOST=localhost babel-node utils/webpack_server.js",
+    "start": "NODE_ENV=production PORT=3000 babel-node index.js",
+    "dev": "NODE_ENV=development PORT=3000 HOST=localhost babel-node index.js",
     "lint": "eslint .",
     "build": "NODE_ENV=production webpack",
     "test": "NODE_ENV=test node ./node_modules/karma/bin/karma start"
@@ -12,6 +13,7 @@
     "type": "git",
     "url": "git+https://github.com/jakemmarsh/react-booster-boilerplate.git"
   },
+  "main": "index.js",
   "keywords": [
     "react",
     "reactjs",
@@ -34,7 +36,8 @@
     "express": "^4.14.0",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
-    "react-router": "^3.0.0"
+    "react-router": "^3.0.0",
+    "webpack-isomorphic-tools": "^2.3.2"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",

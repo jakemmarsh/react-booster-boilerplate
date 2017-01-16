@@ -1,22 +1,29 @@
-import path              from 'path';
-import webpack           from 'webpack';
-import merge             from 'webpack-merge';
-import ExtractTextPlugin from 'extract-text-webpack-plugin';
-import CleanPlugin       from 'clean-webpack-plugin';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
+import path                         from 'path';
+import webpack                      from 'webpack';
+import merge                        from 'webpack-merge';
+import ExtractTextPlugin            from 'extract-text-webpack-plugin';
+import CleanPlugin                  from 'clean-webpack-plugin';
+import HtmlWebpackPlugin            from 'html-webpack-plugin';
+import WebpackIsomorphicToolsPlugin from 'webpack-isomorphic-tools/plugin';
+import isomorphicConfig             from './webpack-isomorphic.config';
 
 const HOST = process.env.HOST;
 const PORT = process.env.PORT;
-const TARGET = process.env.NODE_ENV;
+const ENV = process.env.NODE_ENV;
 const PATHS = {
   root: path.join(__dirname, '.'),
   src: path.join(__dirname, 'src'),
   dist: path.join(__dirname, 'dist')
 };
 
-process.env.BABEL_ENV = TARGET;
+const webpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(isomorphicConfig)
+  .development(ENV === 'development');
+
+process.env.BABEL_ENV = ENV;
 
 const common = {
+  content: PATHS.src,
+
   entry: {
     ['js/bundle.js']: [
       `webpack-hot-middleware/client?path=http://${HOST}:${PORT}/__webpack_hmr&reload=true`,
@@ -31,7 +38,7 @@ const common = {
 
   output: {
     path: PATHS.dist,
-    filename: '[name]'
+    filename: 'js/[name].js'
   },
 
   module: {
@@ -41,6 +48,10 @@ const common = {
         include: PATHS.src,
         exclude: /node_modules/,
         loaders: ['babel-loader?cacheDirectory']
+      },
+      {
+        test: webpackIsomorphicToolsPlugin.regular_expression('images'),
+        loader: 'url-loader?limit=10240'
       }
     ]
   },
@@ -50,6 +61,7 @@ const common = {
   },
 
   plugins: [
+    webpackIsomorphicToolsPlugin,
     new CleanPlugin([PATHS.dist], {
       root: PATHS.root
     }),
@@ -70,7 +82,7 @@ const development = {
   module: {
     loaders: [
       {
-        test: /\.s?css$/,
+        test: webpackIsomorphicToolsPlugin.regular_expression('styles'),
         include: PATHS.src,
         loaders: ['style-loader', 'css-loader', 'sass-loader']
       }
@@ -90,7 +102,7 @@ const dist = {
   module: {
     loaders: [
       {
-        test: /\.s?css$/,
+        test: webpackIsomorphicToolsPlugin.regular_expression('styles'),
         include: PATHS.src,
         loader: ExtractTextPlugin.extract('style-loader', 'css-loader!sass-loader')
       }
@@ -116,9 +128,9 @@ const dist = {
 
 let envConfig;
 
-if ( TARGET === 'development' || TARGET === 'test'  || !TARGET ) {
+if ( ENV === 'development' || ENV === 'test'  || !ENV ) {
   envConfig = development;
-} else if ( TARGET === 'production' ) {
+} else if ( ENV === 'production' ) {
   envConfig = dist;
 }
 
