@@ -7,7 +7,6 @@
     "dev": "NODE_ENV=development PORT=3000 HOST=localhost babel-node index.js",
     "lint": "eslint .",
     "build": "NODE_ENV=production webpack",
-    "pretest": "npm run lint",
     "test": "NODE_ENV=test node ./node_modules/karma/bin/karma start"
   },
   "repository": {
@@ -24,7 +23,8 @@
     "immutablejs",
     "boilerplate",
     "javascript",
-    "webpack"
+    "webpack",
+    "yarn"
   ],
   "author": "Jake Marsh <jakemmarsh@gmail.com> (http://jakemmarsh.com)",
   "license": "MIT",
@@ -60,7 +60,7 @@
     "karma-mocha": "^1.2.0",
     "karma-phantomjs-launcher": "^1.0.2",
     "karma-spec-reporter": "0.0.26",
-    "karma-webpack": "^1.8.0",
+    "karma-webpack": "^2.0.1",
     "mocha": "^3.1.2",
     "node-sass": "^4.1.1",
     "phantomjs-prebuilt": "^2.1.13",
