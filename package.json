@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A ReactJS boilerplate utilizing React Router, Redux, and ImmutableJS. Includes a build system using Webpack and React Hot Loader.",
   "scripts": {
-    "dev": "NODE_ENV=development PORT=3000 HOST=localhost babel-node webpack_server.js",
+    "dev": "NODE_ENV=development PORT=3000 HOST=localhost babel-node utils/webpack_server.js",
     "lint": "eslint .",
     "build": "NODE_ENV=production webpack",
     "test": "NODE_ENV=test node ./node_modules/karma/bin/karma start"

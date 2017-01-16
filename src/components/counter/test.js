@@ -1,7 +1,5 @@
 import React            from 'react';
 import TestUtils        from 'react-addons-test-utils';
-import sinon            from 'sinon';
-import { assert }       from 'chai';
 
 import CounterComponent from './index';
 
@@ -19,8 +17,8 @@ describe('Component: Counter', () => {
   beforeEach(() => {
     props = {
       count: 2,
-      incrementCount: sandbox.stub(),
-      decrementCount: sandbox.stub()
+      incrementCount: sinon.stub(),
+      decrementCount: sinon.stub()
     };
 
     renderComponent();
@@ -41,8 +39,8 @@ describe('Component: Counter', () => {
 
     TestUtils.Simulate.click(decrementButton);
 
-    sinon.assert.calledOnce(props.decrementCount);
-    sinon.assert.calledWith(props.decrementCount, 1);
+    assert.calledOnce(props.decrementCount);
+    assert.calledWith(props.decrementCount, 1);
   });
 
   it('should call props.incrementCount on increment button click', () => {
@@ -50,8 +48,8 @@ describe('Component: Counter', () => {
 
     TestUtils.Simulate.click(incrementButton);
 
-    sinon.assert.calledOnce(props.incrementCount);
-    sinon.assert.calledWith(props.incrementCount, 1);
+    assert.calledOnce(props.incrementCount);
+    assert.calledWith(props.incrementCount, 1);
   });
 
 });
