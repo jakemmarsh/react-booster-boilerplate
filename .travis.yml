@@ -4,7 +4,8 @@ node_js:
 sudo: false
 
 script:
-  - npm test
+  - yarn run lint
+  - yarn test
 
 cache:
   directories:
