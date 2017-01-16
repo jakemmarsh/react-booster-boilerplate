@@ -1,6 +1,6 @@
 import webpack       from 'webpack';
 import Express       from 'express';
-import webpackConfig from './webpack.config.babel';
+import webpackConfig from '../webpack.config.babel';
 
 const compiler = webpack(webpackConfig);
 const PORT     = process.env.PORT;

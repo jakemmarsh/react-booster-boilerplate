@@ -14,7 +14,8 @@
   },
   "globals": {
     "webpackIsomorphicTools": false,
-    "sandbox": true
+    "assert": true,
+    "sinon": true
   },
   "rules": {
     "arrow-parens": 2,

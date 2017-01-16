@@ -7,7 +7,7 @@ const PATHS = {
 
 module.exports = function(config) {
   const hasSingleFile = !!args.file;
-  const helperFile = 'test_helper.js';
+  const helperFile = 'utils/test_helper.js';
   const files = hasSingleFile ? args.file : 'src/**/*test.js';
   const preprocessors = {};
 

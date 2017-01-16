@@ -1,6 +1,5 @@
 import React            from 'react';
 import TestUtils        from 'react-addons-test-utils';
-import { assert }       from 'chai';
 
 import CounterComponent from '../../components/counter';
 import HomePage         from './index';

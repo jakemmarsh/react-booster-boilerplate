@@ -1,6 +1,5 @@
 import React            from 'react';
 import TestUtils        from 'react-addons-test-utils';
-import { assert }       from 'chai';
 
 import HeaderComponent  from '../header';
 import FooterComponent  from '../footer';
@@ -23,8 +22,8 @@ describe('Component: App', () => {
   beforeEach(() => {
     props = {
       count: 2,
-      incrementCount: sandbox.stub(),
-      decrementCount: sandbox.stub()
+      incrementCount: sinon.stub(),
+      decrementCount: sinon.stub()
     };
 
     renderComponent();

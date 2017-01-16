@@ -1,5 +1,3 @@
-import { assert }     from 'chai';
-
 import CountConstants from './index';
 
 describe('Constants: Count', () => {
